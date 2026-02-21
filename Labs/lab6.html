@@ -3210,6 +3210,9 @@ window.Quarto = {
   <li><a href="#q14." id="toc-q14." class="nav-link" data-scroll-target="#q14.">Q14.</a></li>
   <li><a href="#q15." id="toc-q15." class="nav-link" data-scroll-target="#q15.">Q15.</a></li>
   <li><a href="#q16." id="toc-q16." class="nav-link" data-scroll-target="#q16.">Q16.</a></li>
+  </ul></li>
+  <li><a href="#challenge-problems" id="toc-challenge-problems" class="nav-link" data-scroll-target="#challenge-problems">Challenge Problems</a>
+  <ul class="collapse">
   <li><a href="#q17.-challenge-problem" id="toc-q17.-challenge-problem" class="nav-link" data-scroll-target="#q17.-challenge-problem">Q17. (CHALLENGE PROBLEM)</a></li>
   <li><a href="#q18.-challenge-problem" id="toc-q18.-challenge-problem" class="nav-link" data-scroll-target="#q18.-challenge-problem">Q18. (CHALLENGE PROBLEM)</a></li>
   </ul></li>
@@ -3473,8 +3476,35 @@ Solution
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<strong>R</strong>:
-<strong>STATA</strong>:
+<p><strong>R</strong>:</p>
+<pre><code>Coefficients: (1 not defined because of singularities)
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  28.3575     0.6882  41.204  &lt; 2e-16 ***
+walkbike     -2.4401     0.9733  -2.507   0.0125 *  
+schoolid2     2.3301     0.9733   2.394   0.0170 *  
+schoolid3    -1.9866     0.9733  -2.041   0.0418 *  
+schoolid4     0.5027     0.9733   0.517   0.6057    
+schoolid5     1.0303     0.9733   1.059   0.2903    
+schoolid6    -1.2367     0.9733  -1.271   0.2045    
+schoolid7     0.4360     0.9733   0.448   0.6544    
+schoolid8     4.7307     0.9733   4.860 1.58e-06 ***
+schoolid9     1.3870     0.9733   1.425   0.1548    
+schoolid10        NA         NA      NA       NA</code></pre>
+<p><strong>STATA</strong>:</p>
+<pre><code>    walkbike |  -2.440131   .9732921    -2.51   0.012    -4.352472   -.5277904
+             |
+    schoolid |
+          2  |   2.330101   .9732921     2.39   0.017     .4177599    4.242442
+          3  |  -1.986579   .9732921    -2.04   0.042     -3.89892   -.0742376
+          4  |   .5027053   .9732921     0.52   0.606    -1.409636    2.415046
+          5  |   1.030313   .9732921     1.06   0.290    -.8820283    2.942654
+          6  |  -1.236684   .9732921    -1.27   0.204    -3.149025    .6756566
+          7  |   .4359673   .9732921     0.45   0.654    -1.476374    2.348308
+          8  |   4.730669   .9732921     4.86   0.000     2.818328     6.64301
+          9  |   1.387033   .9732921     1.43   0.155    -.5253082    3.299374
+         10  |          0  (omitted)
+
+       _cons |   28.35748   .6882214    41.20   0.000     27.00525    29.70971</code></pre>
 </div>
 </div>
 </section>
@@ -3491,13 +3521,25 @@ Solution
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The overall model will be <span class="math display">\[\begin{align*}
-E(BMI) =&amp; \beta_0 + \beta_1 (walkbike) + \beta_2 (schoolid2)+ \beta_3 (schoolid3) + \beta_4 (schoolid4) +
-&amp; \beta_5 (schoolid5) + \beta_6 (schoolid6) + \beta_7 (schoolid7) + \beta_8 (schoolid8) + \beta_9 (schoolid9),
-\end{align*}\]</span> with school #1 as the reference level and school #10 being dropped for identifiability.</p>
-<pre><code>\item  Since school \#1 is the reference school and it does not have walk/bike program, the model is simply $BMI = \beta_0$
-\item   For school \#6, which has a walk/bike program, the model is $BMI = \beta_0 +\beta_1+ \beta_6$</code></pre>
-<p>For school #10, which has a walk/bike program but was dropped, the model is <span class="math inline">\(BMI = \beta_0 +\beta_1\)</span></p>
+<p>The overall model will be <span class="math display">\[
+\begin{aligned}
+E(BMI) =\;&amp; \beta_0
+        + \beta_1(\text{walkbike})
+        + \beta_2(\text{schoolid2})
+        + \beta_3(\text{schoolid3}) \\
+        &amp; + \beta_4(\text{schoolid4})
+        + \beta_5(\text{schoolid5})
+        + \beta_6(\text{schoolid6}) \\
+        &amp;+ \beta_7(\text{schoolid7})
+        + \beta_8(\text{schoolid8})
+        + \beta_9(\text{schoolid9})
+\end{aligned}
+\]</span> with school #1 as the reference level and school #10 being dropped for identifiability.</p>
+<ul>
+<li>Since school #1 is the reference school and it does not have walk/bike program, the model is simply <span class="math inline">\(BMI = \beta_0\)</span></li>
+<li>For school #6, which has a walk/bike program, the model is <span class="math inline">\(BMI = \beta_0 +\beta_1+ \beta_6\)</span></li>
+<li>For school #10, which has a walk/bike program but was dropped, the model is <span class="math inline">\(BMI = \beta_0 +\beta_1\)</span></li>
+</ul>
 </div>
 </div>
 </section>
@@ -3884,8 +3926,29 @@ Solution
 </section>
 <section id="q16." class="level3">
 <h3 class="anchored" data-anchor-id="q16.">Q16.</h3>
-<p>Based on results from <strong>Q10</strong> and <strong>Q15</strong>, what is the impact of the number of students per school on the amount of shrinkage observed?</p>
+<p>Based on results from <strong>Q11</strong> and <strong>Q15</strong>, what is the impact of the number of students per school on the amount of shrinkage observed?</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Solution">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Summary:</p>
+<ul>
+<li>Q11 (50 students per school): group mean 26.98, school #6 mean 24.68, predicted value 24.97</li>
+<li>Q15 (10 students per school): group mean 29.0, school #6 mean 31.4, predicted value 30.46</li>
+</ul>
+<p><strong>The amount of shrinkage is smaller in Q11 (which had 50 students per school) than in Q15 (which had 10 students per school).</strong></p>
+</div>
+</div>
 </section>
+</section>
+<section id="challenge-problems" class="level2">
+<h2 class="anchored" data-anchor-id="challenge-problems">Challenge Problems</h2>
 <section id="q17.-challenge-problem" class="level3">
 <h3 class="anchored" data-anchor-id="q17.-challenge-problem">Q17. (CHALLENGE PROBLEM)</h3>
 <p><em>STATA users only</em>: With only 10 schools total, the assumption Stata makes in the reporting of the fixed effects of a “large enough” sample size for the asymptotic z-statistic distribution of the coefficients is questionable. Explore the mixed option dfmethod(kroger) for the Kenward-Roger correction to estimate appropriate t-statistics. What impact does this correction have on your results reported in <strong>Q8</strong>+<strong>Q14</strong>?</p>
@@ -3918,7 +3981,7 @@ Solution
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>We see greater variability in the schools with a walk/bike program than those that do not have one (although we do not have evidence that this model provides a significantly better fit)</strong></p>
+<p><strong>We see greater variability in the schools with a walk/bike program than those that do not have one (although we do not have evidence that this model provides a significantly better fit).</strong></p>
 </div>
 </div>
 </section>
